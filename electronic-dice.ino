@@ -29,28 +29,28 @@
 
 void setup()
 {
-  // LED pins are outputs
-  DDRB |= _BV(LED_PIN1) | _BV(LED_PIN2) | _BV(LED_PIN3) | _BV(LED_PIN4);
+	// LED pins are outputs
+	DDRB |= _BV(LED_PIN1) | _BV(LED_PIN2) | _BV(LED_PIN3) | _BV(LED_PIN4);
 
-  // Sensor pin is an input
-  DDRB &= ~_BV(SENSOR_PIN);
+	// Sensor pin is an input
+	DDRB &= ~_BV(SENSOR_PIN);
 
-  // All outputs are low, internal pull-ups are disconnected
-  PORTB = 0x00;
+	// All outputs are low, internal pull-ups are disconnected
+	PORTB = 0x00;
 
-  // Sleep mode is enabled and set to power-down
-  MCUCR |= _BV(SE);
-  MCUCR |= _BV(SM1);
-  MCUCR &= ~_BV(SM0);
+	// Sleep mode is enabled and set to power-down
+	MCUCR |= _BV(SE);
+	MCUCR |= _BV(SM1);
+	MCUCR &= ~_BV(SM0);
 
-  // Initialize random generator
+	// Initialize random generator
 	randomSeed(analogRead(SENSOR_PIN));
 
-  // Be a dice, do your thing ;)
-  animateDice();
+	// Be a dice, do your thing ;)
+	animateDice();
 
-  // Enter sleep mode indefinitely
-  sleep_cpu();
+	// Enter sleep mode indefinitely
+	sleep_cpu();
 }
 
 
@@ -59,16 +59,16 @@ void loop() {}
 
 void animateDice() 
 {
-  char al = 22 + random(5);
-  float as = 1.6 + (random(41) / 100);
-  
-  for (char i = 1; i < al; i++)
-  {
-    showNumber(getRandomNumber(), pow(i, as));
-    delay(50);
-  }
-  
-  showNumber(getRandomNumber(), RESULT_TIMEOUT);
+	char al = 22 + random(5);
+	float as = 1.6 + (random(41) / 100);
+
+	for (char i = 1; i < al; i++)
+	{
+		showNumber(getRandomNumber(), pow(i, as));
+		delay(50);
+	}
+
+	showNumber(getRandomNumber(), RESULT_TIMEOUT);
 }
 
 
@@ -99,10 +99,10 @@ void showNumber(char number, unsigned int duration)
 		case 4: PORTB |= _BV(LED_PIN1) | _BV(LED_PIN3); break;
 		case 5: PORTB |= _BV(LED_PIN1) | _BV(LED_PIN3) | _BV(LED_PIN4); break;
 		case 6: PORTB |= _BV(LED_PIN1) | _BV(LED_PIN2) | _BV(LED_PIN3); break;
-    default: return;
+		default: return;
 	}
 	
 	delay(duration);
 	
-  PORTB &= ~(_BV(LED_PIN1) | _BV(LED_PIN2) | _BV(LED_PIN3) | _BV(LED_PIN4));
+	PORTB &= ~(_BV(LED_PIN1) | _BV(LED_PIN2) | _BV(LED_PIN3) | _BV(LED_PIN4));
 }
