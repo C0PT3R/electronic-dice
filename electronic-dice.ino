@@ -17,10 +17,10 @@
 #define LED_PIN3 2  // LED 3 and 6
 #define LED_PIN4 0  // LED 7
 
-/* Pin du capteur de secousse */
+/* Sensor pin */
 #define SENSOR_PIN A2
 
-/* Temps durant lequel le résultat reste affiché (en millisecondes) */
+/* Final result show timeout (in milliseconds) */
 #define RESULT_TIMEOUT 5000
 
 
