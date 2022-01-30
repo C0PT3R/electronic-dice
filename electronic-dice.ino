@@ -39,8 +39,7 @@ void setup()
 	PORTB = 0x00;
 
 	// Sleep mode is enabled and set to power-down
-	MCUCR |= _BV(SE);
-	MCUCR |= _BV(SM1);
+	MCUCR |= _BV(SE) | _BV(SM1);
 	MCUCR &= ~_BV(SM0);
 
 	// Initialize random generator
